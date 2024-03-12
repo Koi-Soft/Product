@@ -1,0 +1,4 @@
+Download pg image
+docker pull postgres
+
+docker run --name pg-container -e POSTGRES_USER=koi -e POSTGRES_PASSWORD=productpass -e POSTGRES_DB=productdb -p 5432:5432 -d postgres
