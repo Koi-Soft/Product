@@ -28,5 +28,5 @@ class ProductsRepository {
     }
 }
 
-//export default new ProductsRepository(new PostgresModel());
-export default new ProductsRepository(new JsonModel());
+export default new ProductsRepository(new PostgresModel());
+//export default new ProductsRepository(new JsonModel());
