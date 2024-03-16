@@ -1,10 +1,11 @@
 import express, { Application } from "express";
-import { AppDataSource } from './db/db'
+import { AppDataSource } from "./db/db";
+import { env } from "./lib/dotenv";
 
-import Server from "./src/index";
+import Server from "./index";
 
 const app: Application = express();
-const port: number = 3001;
+const port: number = env.get("SERVER_HOST") ?? 3001;
 const server: Server = new Server(app);
 
 app.listen(port, () => {
@@ -18,5 +19,5 @@ app.listen(port, () => {
             // here you can start to work with your database
             console.log('Database connected');
         })
-        .catch((error) => console.log(error))
+        .catch((error: Error) => console.log(`Error conecting to DB => ${error}`));
 });

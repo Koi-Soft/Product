@@ -2,13 +2,16 @@ import { readFile, writeFile } from "fs/promises";
 import { IProduct, IRepository } from "../interfaces/product.interface";
 
 export class JsonModel implements IRepository {
-    private _path: string = "./db/product.json";
+    private _path: string = "./src/db/product.json";
 
     constructor() { }
 
     public async getProducts(): Promise<IProduct[]> {
         const file = await readFile(this._path, "utf-8");
-        if (!file) return [];
+        if (!file) {
+            await writeFile(this._path, "");
+            return [];
+        } 
         return JSON.parse(file);
     }
 

@@ -1,0 +1,28 @@
+version: "3.8"
+
+name: product-microservice
+
+services:
+
+  productdb:
+    container_name: productdb
+    image: postgres
+    env_file: ./.env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    ports: 
+      - $DB_PORT:$DB_PORT
+
+  service:
+    container_name: productservice
+    build: .
+    depends_on: 
+      - productdb
+    ports:
+      - $SERVER_HOST:$SERVER_HOST
+
+
+    
+    
